@@ -20,14 +20,15 @@ export default function SignUp() {
         } else {
             try {
                 await api.post("/auth/register", { name, email, password }).then(({ data }) => login(data.token));
+
+                setToken(getToken());
             } catch (err) {
                 setError(err.response.data.error);
                 console.log(err.response.data);
             }
-
-            setToken(getToken);
         }
     };
+
     return (
         <Container>
             <Form onSubmit={handleSignUp}>
