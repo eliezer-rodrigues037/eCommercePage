@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-
+const cors = require("cors");
 var multer = require("multer");
 var upload = multer();
 
@@ -12,6 +12,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //for parsing multipart/form-data
 app.use(upload.array());
 app.use(express.static("public"));
+
+app.use(
+    cors({
+        origin: "*",
+    })
+);
 
 //Importa todas as controllers.
 require("./app/controllers/index.js")(app);

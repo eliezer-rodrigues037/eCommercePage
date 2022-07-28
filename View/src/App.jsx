@@ -1,5 +1,5 @@
-import Rotas from "../routes";
-
+import Rotas from "./routes";
+import "./styles/global";
 function App() {
     return <Rotas />;
 }
