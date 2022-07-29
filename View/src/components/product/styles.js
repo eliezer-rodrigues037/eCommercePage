@@ -12,7 +12,7 @@ export const Container = styled.div`
     margin: 11px;
     border: 1px solid #b3b3b3;
     align-items: center;
-
+    background-color: #ffff;
     img {
         width: 250px;
         height: auto;

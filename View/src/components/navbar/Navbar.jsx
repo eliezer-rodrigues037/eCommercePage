@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, NavItems, NavItemsContainer } from "./styles";
+import { logout, isAuthenticated } from "../../services/auth";
+import { Navigate } from "react-router-dom";
 
 export default function Navbar() {
-    const handleLogout = () => {};
+    const [authenticated, setAuthenticated] = useState(true);
+
+    const handleLogout = () => {
+        logout();
+        setAuthenticated(false);
+    };
 
     return (
         <Container>
@@ -18,6 +25,7 @@ export default function Navbar() {
                     Logout
                 </button>
             </NavItemsContainer>
+            {!authenticated && <Navigate to="/" />}
         </Container>
     );
 }
