@@ -1,7 +1,9 @@
 import React from "react";
-import { Container, NavItems, NavItemsContainer } from "./stles";
+import { Container, NavItems, NavItemsContainer } from "./styles";
 
 export default function Navbar() {
+    const handleLogout = () => {};
+
     return (
         <Container>
             <NavItemsContainer>
@@ -12,7 +14,9 @@ export default function Navbar() {
                         <li>About</li>
                     </ul>
                 </NavItems>
-                <button className="btn">Logot</button>
+                <button onClick={handleLogout} className="btn">
+                    Logout
+                </button>
             </NavItemsContainer>
         </Container>
     );

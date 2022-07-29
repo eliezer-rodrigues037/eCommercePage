@@ -29,7 +29,7 @@ export default function Login() {
         }
     };
 
-    // Keep logged.
+    // Keep logged?.
     // useEffect(() => {
     //     if (isAuthenticated()) setToken(getToken());
     // }, []);

@@ -36,6 +36,6 @@ export const NavItemsContainer = styled.div`
     button {
         width: 100px;
         height: 40px;
-        margin: 0 10px 0;
+        margin: 0 25px 0;
     }
 `;
