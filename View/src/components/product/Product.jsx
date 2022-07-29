@@ -1,17 +1,17 @@
 import React from "react";
-import { Container } from "./styles";
+import { Container, ProdSpecs } from "./styles";
 import productImgMock from "../../assets/iPhone.jpg";
 
-export default function Product() {
+export default function Product({ nome, peso, preco, descricao }) {
     return (
         <Container>
             <img src={productImgMock} alt="Product image" />
-            <h2>Product name</h2>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero officia, culpa ipsam, minus repellendus excepturi accusamus harum saepe
-            </p>
-            <p>peso</p>
-            <p>Preço</p>
+            <h2>{nome}</h2>
+            <p>{descricao}</p>
+            <ProdSpecs>
+                <p>Peso: {peso}g</p>
+                <p>{preco} R$</p>
+            </ProdSpecs>
         </Container>
     );
 }

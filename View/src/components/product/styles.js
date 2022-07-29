@@ -26,8 +26,14 @@ export const Container = styled.div`
     }
 
     p {
-        align-self: flex-start;
         margin: 10px 15px 0;
         font-weight: bold;
+        align-self: flex-start;
     }
+`;
+
+export const ProdSpecs = styled.div`
+    margin-top: 50px;
+    align-self: flex-start;
+    justify-self: end;
 `;

@@ -7,11 +7,11 @@ const ProductSchema = new mongoose.Schema({
         required: true,
     },
     peso: {
-        type: mongoose.Decimal128,
+        type: Number,
         required: true,
     },
     preco: {
-        type: mongoose.Decimal128,
+        type: Number,
         required: true,
     },
     descricao: {
