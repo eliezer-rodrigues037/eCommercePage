@@ -34,6 +34,7 @@ export default function SignUp() {
             <Form onSubmit={handleSignUp}>
                 <img src="https://mindconsulting.com.br/wp-content/uploads/2020/01/Mind-Branco-copy.png" alt="Mind Consulting logo" />
                 <img src={projectTitleLogo} alt="Mind Consulting project logo" />
+                <h1>Crie sua conta</h1>
                 {error && <p>{error}</p>}
                 <input type="text" placeholder="Nome de usuário" onChange={(e) => setName(e.target.value)} />
                 <input type="email" placeholder="Endereço de e-mail" onChange={(e) => setEmail(e.target.value)} />
@@ -41,7 +42,7 @@ export default function SignUp() {
                 <button type="submit">Cadastrar</button>
                 <Link to="/">Login</Link>
             </Form>
-            {token && <Navigate to="/app" />}
+            {token && <Navigate to="/home" />}
         </Container>
     );
 }

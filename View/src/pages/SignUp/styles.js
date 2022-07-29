@@ -9,7 +9,7 @@ export const Container = styled.div`
 
 export const Form = styled.form`
     width: 400px;
-    height: 500px;
+    height: 600px;
     background: #404040;
     padding: 20px;
     display: flex;
@@ -17,6 +17,9 @@ export const Form = styled.form`
     align-items: center;
     border-radius: 10px;
 
+    h1 {
+        margin-bottom: 20px;
+    }
     img {
         margin: 10px 0 10px;
     }

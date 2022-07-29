@@ -23,15 +23,16 @@ export default function Login() {
                 await api.post("/auth/authenticate", { email, password }).then(({ data }) => login(data.token));
                 setToken(getToken());
             } catch (err) {
-                setError(err.response.data.error);
+                setError(err.response.data);
                 console.log(err.response.data);
             }
         }
     };
 
-    useEffect(() => {
-        if (isAuthenticated()) setToken(getToken());
-    }, []);
+    // Keep logged.
+    // useEffect(() => {
+    //     if (isAuthenticated()) setToken(getToken());
+    // }, []);
 
     return (
         <Container>
@@ -44,7 +45,7 @@ export default function Login() {
                 <button type="submit">Logar</button>
                 <Link to="/signup">Cadastrar</Link>
             </Form>
-            {token && <Navigate to="/app" />}
+            {token && <Navigate to="/home" />}
         </Container>
     );
 }
