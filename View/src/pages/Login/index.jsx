@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { Form, Container } from "./styles";
-import { login, getToken, isAuthenticated } from "../../services/auth";
+import { login, getToken } from "../../services/auth";
 import api from "../../services/api";
 import projectTitleLogo from "../../assets/ProjectLogo.png";
 
@@ -21,6 +21,7 @@ export default function Login() {
         } else {
             try {
                 await api.post("/auth/authenticate", { email, password }).then(({ data }) => login(data.token));
+
                 setToken(getToken());
             } catch (err) {
                 setError(err.response.data);

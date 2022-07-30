@@ -19,7 +19,7 @@ export default function SignUp() {
             setError("Preencha todos os dados para se cadastrar!");
         } else {
             try {
-                await api.post("/auth/register", { name, email, password }).then(({ data }) => login(data.token));
+                await api.post("/auth/register", { name, email, password, role: "client" }).then(({ data }) => login(data.token));
 
                 setToken(getToken());
             } catch (err) {

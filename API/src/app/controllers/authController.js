@@ -22,7 +22,7 @@ router.post("/register", async (req, res) => {
         user.password = undefined;
         return res.send({
             user,
-            token: generateToken({ id: user.id }),
+            token: generateToken({ id: user.id, role: user.role }),
         });
     } catch (err) {
         return res.status(400).send({ error: "Registration failed: " + err });
@@ -41,7 +41,7 @@ router.post("/authenticate", async (req, res) => {
 
     return res.send({
         user,
-        token: generateToken({ id: user.id }),
+        token: generateToken({ id: user.id, role: user.role }),
     });
 });
 
