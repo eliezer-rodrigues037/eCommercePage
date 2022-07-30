@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { Form, Container } from "./styles";
-import projectTitleLogo from "../../assets/ProjectLogo.png";
 import { login, getToken } from "../../services/auth";
+import projectTitleLogo from "../../assets/ProjectLogo.png";
 import api from "../../services/api";
+import decodeJwt from "jwt-decode";
 
 export default function SignUp() {
     const [error, setError] = useState("");
@@ -19,7 +20,10 @@ export default function SignUp() {
             setError("Preencha todos os dados para se cadastrar!");
         } else {
             try {
-                await api.post("/auth/register", { name, email, password, role: "client" }).then(({ data }) => login(data.token));
+                await api.post("/auth/register", { name, email, password, role: "client" }).then(({ data }) => {
+                    const decodedToken = decodeJwt(data.token);
+                    login(data.token, decodedToken.role);
+                });
 
                 setToken(getToken());
             } catch (err) {
@@ -31,7 +35,7 @@ export default function SignUp() {
 
     return (
         <Container>
-            <Form onSubmit={handleSignUp}>
+            <Form>
                 <img src="https://mindconsulting.com.br/wp-content/uploads/2020/01/Mind-Branco-copy.png" alt="Mind Consulting logo" />
                 <img src={projectTitleLogo} alt="Mind Consulting project logo" />
                 <h1>Crie sua conta</h1>
@@ -39,7 +43,9 @@ export default function SignUp() {
                 <input type="text" placeholder="Nome de usuário" onChange={(e) => setName(e.target.value)} />
                 <input type="email" placeholder="Endereço de e-mail" onChange={(e) => setEmail(e.target.value)} />
                 <input type="password" placeholder="Senha" onChange={(e) => setPassword(e.target.value)} />
-                <button type="submit">Cadastrar</button>
+                <button type="submit" onClick={handleSignUp}>
+                    Cadastrar
+                </button>
                 <Link to="/">Login</Link>
             </Form>
             {token && <Navigate to="/home" />}

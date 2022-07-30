@@ -42,9 +42,18 @@ export default function Products() {
                 </button>
                 <ProductsWrapper>
                     {products &&
-                        products.map((prod) => (
-                            <Product key={prod._id} nome={prod.nome} peso={`${prod.peso}`} preco={`${prod.preco}`} descricao={prod.descricao} />
-                        ))}
+                        products.map(
+                            (prod) =>
+                                prod.ativo && (
+                                    <Product
+                                        key={prod._id}
+                                        nome={prod.nome}
+                                        peso={`${prod.peso}`}
+                                        preco={`${prod.preco}`}
+                                        descricao={prod.descricao}
+                                    />
+                                )
+                        )}
                 </ProductsWrapper>
             </Container>
         </>

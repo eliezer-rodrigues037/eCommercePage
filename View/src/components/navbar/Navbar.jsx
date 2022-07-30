@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Container, NavItems, NavItemsContainer } from "./styles";
-import { logout, isAuthenticated } from "../../services/auth";
-import { Navigate } from "react-router-dom";
+import { logout, isAdmin } from "../../services/auth";
+import { Link, Navigate } from "react-router-dom";
 
 export default function Navbar() {
     const [authenticated, setAuthenticated] = useState(true);
@@ -17,8 +17,14 @@ export default function Navbar() {
                 <NavItems>
                     <h1>eCommerce page</h1>
                     <ul>
-                        <li>Home</li>
-                        <li>About</li>
+                        <li>
+                            <Link to="/home">Home</Link>
+                        </li>
+                        {isAdmin() && (
+                            <li>
+                                <Link to="/admin">Administração</Link>
+                            </li>
+                        )}
                     </ul>
                 </NavItems>
                 <button onClick={handleLogout} className="btn">

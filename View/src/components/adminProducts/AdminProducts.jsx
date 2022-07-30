@@ -6,15 +6,28 @@ import AdminProduct from "../adminProduct/AdminProduct";
 
 export default function AdminProducts() {
     const [products, setProducts] = useState();
+    const [search, setSearch] = useState("");
 
     const loadProducts = async () => {
         try {
+            console.log("loading products...");
             await api.get("/products").then(({ data }) => {
                 setProducts(data.products);
             });
         } catch (error) {
             console.log(error);
         }
+    };
+
+    const handleSearch = () => {
+        if (search === "") {
+            loadProducts();
+        }
+
+        const searchedProduct = products.find(
+            (product) => product.nome.toLowerCase().replace(/\s+/g, "") === search.toLowerCase().replace(/\s+/g, "")
+        );
+        if (searchedProduct) setProducts([searchedProduct]);
     };
 
     useEffect(() => {
@@ -24,8 +37,8 @@ export default function AdminProducts() {
     return (
         <Container>
             <div className="search">
-                <input placeholder="Buscar" />
-                <button className="btn">
+                <input placeholder="Buscar" onChange={(e) => setSearch(e.target.value)} />
+                <button className="btn" onClick={handleSearch}>
                     <BsSearch />
                 </button>
             </div>
@@ -39,6 +52,7 @@ export default function AdminProducts() {
                         preco={`${prod.preco}`}
                         descricao={prod.descricao}
                         loadProducts={loadProducts}
+                        ativo={prod.ativo}
                     />
                 ))}
         </Container>

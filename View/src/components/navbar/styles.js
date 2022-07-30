@@ -38,4 +38,9 @@ export const NavItemsContainer = styled.div`
         height: 40px;
         margin: 0 25px 0;
     }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
 `;

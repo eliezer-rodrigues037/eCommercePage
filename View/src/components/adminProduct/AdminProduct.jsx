@@ -1,12 +1,20 @@
 import { useState } from "react";
 import { Container } from "./styles";
 import { AiFillEdit } from "react-icons/ai";
-import { MdDisabledVisible } from "react-icons/md";
+import api from "../../services/api";
 
 import productImgMock from "../../assets/iPhone.jpg";
 import EditProduct from "../editProduct/EditProduct";
-export default function AdminProduct({ productId, nome, peso, preco, descricao, loadProducts }) {
+export default function AdminProduct({ productId, nome, peso, preco, descricao, loadProducts, ativo }) {
     const [modalOpen, setModalOpen] = useState(false);
+
+    const [disabledProduct, setdisabledProduct] = useState({
+        nome: nome,
+        descricao: descricao,
+        preco: preco,
+        peso: peso,
+        ativo: ativo,
+    });
 
     const editProduct = () => {
         setModalOpen(true);
@@ -15,6 +23,17 @@ export default function AdminProduct({ productId, nome, peso, preco, descricao, 
     const HandleCloseModal = () => {
         setModalOpen(false);
         loadProducts();
+    };
+
+    const handleDisable = async () => {
+        try {
+            let enable = !ativo;
+            await api.put(`/products/${productId}`, { ...disabledProduct, ativo: enable }).then(() => {
+                loadProducts();
+            });
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -53,9 +72,7 @@ export default function AdminProduct({ productId, nome, peso, preco, descricao, 
                     <button className="btn" onClick={editProduct}>
                         <AiFillEdit />
                     </button>
-                    <button className="btn">
-                        <MdDisabledVisible />
-                    </button>
+                    <input type="checkbox" checked={ativo} onChange={handleDisable}></input>
                 </div>
                 <img src={productImgMock} />
             </Container>

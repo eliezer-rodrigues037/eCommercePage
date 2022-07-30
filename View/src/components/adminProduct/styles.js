@@ -21,6 +21,12 @@ export const Container = styled.div`
         margin: 10px 0;
     }
 
+    input {
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+    }
+
     .product-buttons {
         display: flex;
         flex-direction: column;
@@ -55,8 +61,6 @@ export const Container = styled.div`
 
     .price-weight div {
         margin: 5px 0;
-    }
-
-    .price-weight {
+        width: 100px;
     }
 `;
