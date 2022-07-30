@@ -4,7 +4,7 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Admin from "./pages/admin";
-import { isAuthenticated } from "./services/auth";
+import { isAuthenticated, isAdmin } from "./services/auth";
 
 const Rotas = () => (
     <BrowserRouter>
@@ -12,7 +12,7 @@ const Rotas = () => (
             <Route exact path="/" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/home" element={isAuthenticated() ? <Home /> : <Navigate to="/" />} />
-            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin" element={isAdmin() ? <Admin /> : <Navigate to="/home" />} />
             <Route path="*" element={<h1>Page not found</h1>} />
         </Routes>
     </BrowserRouter>

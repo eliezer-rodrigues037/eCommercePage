@@ -30,8 +30,16 @@ export default function AdminProducts() {
                 </button>
             </div>
             {products &&
-                products.map((prod) => (
-                    <AdminProduct key={prod._id} nome={prod.nome} peso={`${prod.peso}`} preco={`${prod.preco}`} descricao={prod.descricao} />
+                products.map((prod, index) => (
+                    <AdminProduct
+                        key={index}
+                        productId={prod._id}
+                        nome={prod.nome}
+                        peso={`${prod.peso}`}
+                        preco={`${prod.preco}`}
+                        descricao={prod.descricao}
+                        loadProducts={loadProducts}
+                    />
                 ))}
         </Container>
     );

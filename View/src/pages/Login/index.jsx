@@ -4,6 +4,7 @@ import { Form, Container } from "./styles";
 import { login, getToken } from "../../services/auth";
 import api from "../../services/api";
 import projectTitleLogo from "../../assets/ProjectLogo.png";
+import decodeJwt from "jwt-decode";
 
 import React from "react";
 
@@ -20,7 +21,10 @@ export default function Login() {
             setError("Preencha e-mail e senha para logar!");
         } else {
             try {
-                await api.post("/auth/authenticate", { email, password }).then(({ data }) => login(data.token));
+                await api.post("/auth/authenticate", { email, password }).then(({ data }) => {
+                    const decodedToken = decodeJwt(data.token);
+                    login(data.token, decodedToken.role);
+                });
 
                 setToken(getToken());
             } catch (err) {
