@@ -22,6 +22,9 @@ const ProductSchema = new mongoose.Schema({
         type: Boolean,
         default: true,
     },
+    img: {
+        type: Buffer,
+    },
     createdAt: {
         type: Date,
         default: Date.now,

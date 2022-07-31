@@ -62,6 +62,7 @@ export default function AdminProducts() {
                         descricao={prod.descricao}
                         loadProducts={loadProducts}
                         ativo={prod.ativo}
+                        img={prod.img}
                     />
                 ))}
         </Container>

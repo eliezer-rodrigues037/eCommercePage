@@ -9,6 +9,7 @@ export default function AddProduct({ handleCloseModal, modalOpen }) {
         descricao: "",
         preco: "",
         peso: "",
+        img: undefined,
     });
     const [error, setError] = useState();
 
@@ -37,6 +38,10 @@ export default function AddProduct({ handleCloseModal, modalOpen }) {
                     <input type="number" onChange={(e) => setProduct({ ...product, preco: e.target.value })} />
                     <label>Peso</label>
                     <input type="number" onChange={(e) => setProduct({ ...product, peso: e.target.value })} />
+                </div>
+                <div>
+                    <label>Upload Image</label>
+                    <input type="file" value="" onChange={(e) => setProduct({ ...product, img: e.target.value })} />
                 </div>
                 {error && <p>{error}</p>}
                 <button type="button" className="btn" onClick={handleSubmit}>

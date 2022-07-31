@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container } from "./styles";
 import { AiFillEdit } from "react-icons/ai";
 import api from "../../services/api";
 
 import productImgMock from "../../assets/iPhone.jpg";
 import EditProduct from "../editProduct/EditProduct";
-export default function AdminProduct({ productId, nome, peso, preco, descricao, loadProducts, ativo }) {
+export default function AdminProduct({ productId, nome, peso, preco, descricao, loadProducts, ativo, img }) {
     const [modalOpen, setModalOpen] = useState(false);
+    const [imgState, setImgState] = useState("");
 
     const [disabledProduct, setdisabledProduct] = useState({
         nome: nome,
@@ -35,6 +36,16 @@ export default function AdminProduct({ productId, nome, peso, preco, descricao, 
             console.log(error);
         }
     };
+
+    const setImg = async () => {
+        return await bufferImage.from(img);
+    };
+
+    useEffect(() => {
+        if (img) {
+            console.log(setImg());
+        }
+    }, []);
 
     return (
         <>
@@ -74,7 +85,7 @@ export default function AdminProduct({ productId, nome, peso, preco, descricao, 
                     </button>
                     <input type="checkbox" checked={ativo} onChange={handleDisable}></input>
                 </div>
-                <img src={productImgMock} />
+                {imgState ? <img src={`data:image/jpg;base64,${imgState}`} alt="" /> : <img src={productImgMock} alt="" />}
             </Container>
         </>
     );
