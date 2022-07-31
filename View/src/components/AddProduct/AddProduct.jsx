@@ -39,10 +39,11 @@ export default function AddProduct({ handleCloseModal, modalOpen }) {
                     <label>Peso</label>
                     <input type="number" onChange={(e) => setProduct({ ...product, peso: e.target.value })} />
                 </div>
-                <div>
+                {/* WIP */}
+                {/* <div>
                     <label>Upload Image</label>
                     <input type="file" value="" onChange={(e) => setProduct({ ...product, img: e.target.value })} />
-                </div>
+                </div> */}
                 {error && <p>{error}</p>}
                 <button type="button" className="btn" onClick={handleSubmit}>
                     Adicionar

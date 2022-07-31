@@ -37,16 +37,6 @@ export default function AdminProduct({ productId, nome, peso, preco, descricao, 
         }
     };
 
-    const setImg = async () => {
-        return await bufferImage.from(img);
-    };
-
-    useEffect(() => {
-        if (img) {
-            console.log(setImg());
-        }
-    }, []);
-
     return (
         <>
             <EditProduct
@@ -85,7 +75,7 @@ export default function AdminProduct({ productId, nome, peso, preco, descricao, 
                     </button>
                     <input type="checkbox" checked={ativo} onChange={handleDisable}></input>
                 </div>
-                {imgState ? <img src={`data:image/jpg;base64,${imgState}`} alt="" /> : <img src={productImgMock} alt="" />}
+                {imgState ? <img src={imgState} alt="" /> : <img src={productImgMock} alt="" />}
             </Container>
         </>
     );
