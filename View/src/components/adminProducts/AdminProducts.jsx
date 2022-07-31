@@ -6,7 +6,8 @@ import AdminProduct from "../adminProduct/AdminProduct";
 
 export default function AdminProducts() {
     const [products, setProducts] = useState();
-    const [search, setSearch] = useState("");
+    const [search, setSearch] = useState();
+    const [err, setErr] = useState();
 
     const loadProducts = async () => {
         try {
@@ -22,12 +23,19 @@ export default function AdminProducts() {
     const handleSearch = () => {
         if (search === "") {
             loadProducts();
+            setErr(undefined);
         }
 
         const searchedProduct = products.find(
             (product) => product.nome.toLowerCase().replace(/\s+/g, "") === search.toLowerCase().replace(/\s+/g, "")
         );
-        if (searchedProduct) setProducts([searchedProduct]);
+
+        if (searchedProduct) {
+            setProducts([searchedProduct]);
+            setErr(null);
+        } else if (!searchedProduct && search != "") {
+            setErr(`Sua pesquisa - ${search} - não encontrou nenhum produto correspondente`);
+        }
     };
 
     useEffect(() => {
@@ -37,6 +45,7 @@ export default function AdminProducts() {
     return (
         <Container>
             <div className="search">
+                {err && <p className="err">{err}</p>}
                 <input placeholder="Buscar" onChange={(e) => setSearch(e.target.value)} />
                 <button className="btn" onClick={handleSearch}>
                     <BsSearch />

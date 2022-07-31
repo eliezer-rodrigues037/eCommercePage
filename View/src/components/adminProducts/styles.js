@@ -27,4 +27,12 @@ export const Container = styled.div`
         height: 30px;
         margin-bottom: 0;
     }
+
+    .err {
+        color: #ff3333;
+        padding: 10px;
+        width: 100%;
+        text-align: center;
+        border-radius: 5px;
+    }
 `;
