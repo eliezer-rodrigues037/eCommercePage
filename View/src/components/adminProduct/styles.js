@@ -8,6 +8,7 @@ export const Container = styled.div`
     margin: 10px 0;
     padding: 15px;
     border-radius: 5px;
+    border: 1px solid gray;
 
     img {
         width: 150px;

@@ -11,7 +11,6 @@ export default function AdminProducts() {
 
     const loadProducts = async () => {
         try {
-            console.log("loading products...");
             await api.get("/products").then(({ data }) => {
                 setProducts(data.products);
             });

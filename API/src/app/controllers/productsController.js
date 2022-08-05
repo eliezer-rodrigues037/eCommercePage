@@ -2,7 +2,8 @@ const express = require("express");
 const authMiddleware = require("../middleware/auth");
 const router = express.Router();
 const Product = require("../../models/Product");
-
+const multer = require("multer");
+const multerConfig = require("../../config/multer");
 router.use(authMiddleware);
 //Lists all products.
 router.get("/", async (req, res) => {
@@ -27,7 +28,7 @@ router.get("/:productId", async (req, res) => {
 });
 
 //Create a product.
-router.post("/", async (req, res) => {
+router.post("/", multer().single("img"), async (req, res) => {
     try {
         const product = await Product.create(req.body);
 
