@@ -28,7 +28,8 @@ router.get("/:productId", async (req, res) => {
 });
 
 //Create a product.
-router.post("/", multer().single("img"), async (req, res) => {
+router.post("/", multer(multerConfig).single("img"), async (req, res) => {
+    console.log(req.file);
     try {
         const product = await Product.create(req.body);
 
